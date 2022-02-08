@@ -1,0 +1,21 @@
+
+plugins {
+  id 'application'
+}
+
+repositories {
+  mavenCentral()
+}
+
+def javaOperatorVersion = "2.1.1"
+def crdGenVersion = "5.12.1"
+
+dependencies {
+  implementation "io.javaoperatorsdk:operator-framework:${javaOperatorVersion}"
+  annotationProcessor "io.javaoperatorsdk:operator-framework:${javaOperatorVersion}"
+  annotationProcessor "io.fabric8:crd-generator-apt:${crdGenVersion}"
+}
+
+application {
+  mainClass = 'com.github.ryusa.vulture.josdk.geeter.App'
+}
