@@ -3,12 +3,21 @@
  */
 package com.github.ryusa.vulture.josdk.geeter;
 
-public class App {
-    public String getGreeting() {
-        return "Hello World!";
-    }
+import com.github.ryusa.vulture.josdk.geeter.reconcilers.GreeterReconciler;
 
-    public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
-    }
+import io.javaoperatorsdk.operator.Operator;
+import io.javaoperatorsdk.operator.api.config.ConfigurationService;
+import io.javaoperatorsdk.operator.api.config.ConfigurationServiceOverrider;
+import io.javaoperatorsdk.operator.config.runtime.DefaultConfigurationService;
+
+public class App {
+  public static void main(String[] args) {
+    ConfigurationService config = ConfigurationServiceOverrider
+        .override(DefaultConfigurationService.instance())
+        .withConcurrentReconciliationThreads(5)
+        .build();
+    Operator operator = new Operator(config);
+    operator.register(new GreeterReconciler());
+    operator.start();
+  }
 }
