@@ -1,0 +1,6 @@
+apiVersion: com.github.ryusa.vulture/v1alpha
+kind: Greeter
+metadata:
+  name: helloworld
+spec:
+  message: "Hello World"
