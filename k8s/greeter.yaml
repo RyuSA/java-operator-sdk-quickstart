@@ -1,4 +1,4 @@
-apiVersion: com.github.ryusa.vulture/v1alpha
+apiVersion: vulture.ryusa.github.com/v1alpha1
 kind: Greeter
 metadata:
   name: helloworld
