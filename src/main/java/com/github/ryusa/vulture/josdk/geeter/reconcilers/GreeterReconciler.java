@@ -11,7 +11,11 @@ import io.javaoperatorsdk.operator.api.reconciler.DeleteControl;
 import io.javaoperatorsdk.operator.api.reconciler.Reconciler;
 import io.javaoperatorsdk.operator.api.reconciler.UpdateControl;
 
-@ControllerConfiguration
+/**
+ * Controller は Reconciler<R extends HasMetadata> を実装する必要があります
+ * さらに ControllerConfiguration アノテーションに Controller としての設定を追加できます
+ */
+@ControllerConfiguration(finalizerName = "greeters.vulture.ryusa.github.com/finalizer")
 public class GreeterReconciler implements Reconciler<Greeter> {
 
   private final Logger logger = LoggerFactory.getLogger(GreeterReconciler.class);

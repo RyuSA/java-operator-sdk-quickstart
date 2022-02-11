@@ -1,6 +1,7 @@
 
 plugins {
   id 'application'
+  id 'com.google.cloud.tools.jib' version '3.2.0'
 }
 
 repositories {
@@ -9,11 +10,14 @@ repositories {
 
 def javaOperatorVersion = "2.1.1"
 def crdGenVersion       = "5.12.1"
+def lombokVersion       = "1.18.22"
 
 dependencies {
   implementation "io.javaoperatorsdk:operator-framework:${javaOperatorVersion}"
   annotationProcessor "io.javaoperatorsdk:operator-framework:${javaOperatorVersion}"
   annotationProcessor "io.fabric8:crd-generator-apt:${crdGenVersion}"
+  compileOnly "org.projectlombok:lombok:${lombokVersion}"
+  annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
   implementation "ch.qos.logback:logback-classic:1.2.10"
 }
 
