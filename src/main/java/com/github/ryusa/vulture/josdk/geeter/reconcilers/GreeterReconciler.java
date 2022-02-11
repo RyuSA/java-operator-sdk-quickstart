@@ -16,13 +16,19 @@ public class GreeterReconciler implements Reconciler<Greeter> {
 
   private final Logger logger = LoggerFactory.getLogger(GreeterReconciler.class);
 
+  /**
+   * Greeterリソースが削除された際にfinalizer経由で実行されるメソッド
+   */
   @Override
   public DeleteControl cleanup(Greeter resource, Context context) {
     logger.info("Cleaning up for: {} {}", resource.getMetadata().getNamespace(),
         resource.getMetadata().getName());
-    return DeleteControl.defaultDelete();
+    return DeleteControl.defaultDelete(); // finalizerを削除して終了
   }
 
+  /**
+   * リコンサイル処理、Greeterリソースが作成されたり更新されたり削除されたりした場合に呼び出されます
+   */
   @Override
   public UpdateControl<Greeter> reconcile(Greeter resource, Context context) {
 
